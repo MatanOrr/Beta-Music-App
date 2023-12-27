@@ -4,6 +4,7 @@ import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 import ButtonAppBar from "../components/AppBar";
 import MusicClefs from "../components/NotesStave/MusicClefs";
 import OSPiano from "../components/Piano/OSPiano";
+import Timer from "../components/Timer";
 
 export default function HomePage() {
   return (
@@ -21,11 +22,13 @@ export default function HomePage() {
           <ButtonAppBar />
         </Grid>
 
-        <Grid xs={8} style={{ border: "1px solid black" }}>
+        <Grid id="MusicClefs" xs={6} style={{ border: "1px solid black" }}>
           <MusicClefs />
         </Grid>
 
-        <Grid xs={4} style={{ border: "1px solid black" }}></Grid>
+        <Grid id="Timer" xs={6} style={{ border: "1px solid black" }}>
+          <Timer />
+        </Grid>
 
         <Grid
           xs={12}

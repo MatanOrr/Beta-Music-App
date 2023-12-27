@@ -2,7 +2,6 @@ import "./App.css";
 import React from "react";
 import HomePage from "./pages/Home.jsx";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { Notation } from "react-abc";
 
 const theme = createTheme({
   palette: {
