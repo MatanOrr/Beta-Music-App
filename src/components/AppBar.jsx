@@ -1,5 +1,6 @@
 import { AppBar, Box, Toolbar, Typography, Button } from "@mui/material";
 import React from "react";
+import Theme from "../styles/theme";
 
 export default function ButtonAppBar() {
   return (
