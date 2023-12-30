@@ -1,13 +1,13 @@
-import { Box, Button, Container, Paper } from "@mui/material";
+import { Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Notation } from "react-abc";
 import NoteGenerator from "./NoteGenerator";
-import palette from "@mui/system";
-import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
+import { Theme } from "../../styles/theme";
 
 export default function MusicClefs(props) {
   let targetMidiNum = props.targetMidiNum;
   let userSuccess = props.userSuccess;
+  const theme = Theme();
 
   const [note, setNote] = useState(NoteGenerator(targetMidiNum));
 
@@ -24,13 +24,26 @@ export default function MusicClefs(props) {
       [V: V1] ${note}|]`;
 
   return (
-    <Paper sx={{ color: "#a58ef9", background: "#fdf7e4" }}>
-      <Notation
-        notation={notation}
-        engraverParams={{
-          scale: 3,
-        }}
-      />
-    </Paper>
+    <Grid container alignItems="center" justifyContent="center">
+      <Grid item xs></Grid>
+
+      <Grid
+        sx={{ background: theme.palette.background.default }}
+        item
+        xs={6}
+        alignItems="center"
+        justifyContent="center"
+        paddingTop={"10px"}
+      >
+        <Notation
+          notation={notation}
+          engraverParams={{
+            scale: 3,
+          }}
+        />
+      </Grid>
+
+      <Grid item xs></Grid>
+    </Grid>
   );
 }

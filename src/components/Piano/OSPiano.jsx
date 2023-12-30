@@ -1,6 +1,4 @@
-import { Box } from "@mui/material";
-import _ from "lodash";
-import React, { useState } from "react";
+import React from "react";
 import { KeyboardShortcuts, MidiNumbers } from "react-piano";
 import "react-piano/dist/styles.css";
 import DimensionsProvider from "./DimensionsProvider.js";
@@ -41,7 +39,7 @@ export default function OSPiano(props) {
             render={({ isLoading, playNote, stopNote }) => (
               <RecordingPiano
                 noteRange={noteRange}
-                width={containerWidth * 0.5}
+                width={containerWidth * 1}
                 playNote={playNote}
                 stopNote={stopNote}
                 targetNote={props.targetNote}
