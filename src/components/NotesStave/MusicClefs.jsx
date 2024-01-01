@@ -1,20 +1,46 @@
-import { Box } from "@mui/material";
-import React from "react";
+import { Grid } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { Notation } from "react-abc";
-import notation from "./ABCData.js";
+import NoteGenerator from "./NoteGenerator";
 
-export default function MusicClefs() {
+export default function MusicClefs(props) {
+  let targetMidiNum = props.targetMidiNum;
+  let userSuccess = props.userSuccess;
+
+  const [note, setNote] = useState(NoteGenerator(targetMidiNum));
+
+  useEffect(() => {
+    setNote(NoteGenerator(targetMidiNum));
+  }, [targetMidiNum, userSuccess]);
+
+  let notation = `
+      X: 1
+      M: 1/4
+      L: 1/4
+      %%staves {V1}
+      [V: V1] ${note}|]`;
+
   return (
-    <Box>
-      <h2>Guess the note!</h2>
-      <Box style={{ border: "1px solid black" }}>
+    <Grid container alignItems="center" justifyContent="center">
+      <Grid item xs></Grid>
+
+      <Grid
+        sx={{ background: "theme.palette.background.default " }}
+        item
+        xs={6}
+        alignItems="center"
+        justifyContent="center"
+        paddingTop={"0px"}
+      >
         <Notation
           notation={notation}
           engraverParams={{
-            scale: 2,
+            scale: 3,
           }}
         />
-      </Box>
-    </Box>
+      </Grid>
+
+      <Grid item xs></Grid>
+    </Grid>
   );
 }
