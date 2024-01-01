@@ -1,7 +1,8 @@
+import { Alert, AlertTitle } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import React, { useEffect, useState } from "react";
-// import Button from "@mui/material/Button";
-import { Alert, AlertTitle, Paper } from "@mui/material";
 import ButtonAppBar from "../components/AppBar";
+import HowToPlay from "../components/Instructions.jsx";
 import MusicClefs from "../components/NotesStave/MusicClefs";
 import OSPiano from "../components/Piano/OSPiano";
 import { CustomGridContainer, CustomGridItem } from "../styles/theme.js";
@@ -52,11 +53,6 @@ function AlertComp({ userSuccess, targetNote }) {
   );
 }
 
-function Item(props) {
-  const { ...other } = props;
-  return <Paper {...other} />;
-}
-
 export default function HomePage() {
   let generateRandomNumber = (min, max) =>
     Math.floor(Math.random() * (max - min + 1)) + min;
@@ -97,10 +93,9 @@ export default function HomePage() {
     };
 
     if (lastNotePlayed != null) {
-      // Assuming null means no note has been played yet
       checkNote();
     }
-  }, [lastNotePlayed, targetNote, userScore]); // Run the effect only if lastNotePlayed or targetNote changes
+  });
 
   const updateTargetNote = () => {
     setTargetNote(generateRandomNumber(60, 72));
@@ -112,23 +107,14 @@ export default function HomePage() {
     console.log("Last note played is now: ", lastNotePlayed);
   };
 
-  // const DebugInfo = () => {
-  //   return (
-  //     <Paper>
-  //       <p>Target note: {targetNote}</p>
-  //       <p>Last note played: {lastNotePlayed}</p>
-  //       <p>User success: {userSuccess ? "true" : "false"}</p>
-  //       <p>User score: {userScore}</p>
-  //       <p>Previous: {MidiToNoteName(previousTargetNote)}</p>
-  //       <p>Current: {MidiToNoteName(targetNote)}</p>
-  //     </Paper>
-  //   );
-  // };
-
   return (
     <CustomGridContainer>
       <CustomGridItem xs={12}>
         <ButtonAppBar />
+      </CustomGridItem>
+
+      <CustomGridItem xs={6}>
+        <HowToPlay />
       </CustomGridItem>
 
       <CustomGridItem xs={6}>
@@ -139,6 +125,12 @@ export default function HomePage() {
         />
       </CustomGridItem>
 
+      <CustomGridItem xs={2} alignItems="start" justifyContent="start">
+        <Typography variant="h6" color="#008100">
+          Your current score is: {userScore}
+        </Typography>
+      </CustomGridItem>
+
       <CustomGridItem xs={6} alignItems="start" justifyContent="start">
         <AlertComp userSuccess={userSuccess} targetNote={previousTargetNote} />
       </CustomGridItem>
@@ -146,6 +138,6 @@ export default function HomePage() {
       <CustomGridItem xs={6} sx={{ textAlign: "center" }}>
         <OSPiano updateLastNote={updateLastNote} />
       </CustomGridItem>
-    </CustomGridContainer> // Grid container
+    </CustomGridContainer>
   );
 }

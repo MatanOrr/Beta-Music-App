@@ -2,16 +2,13 @@ import { Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Notation } from "react-abc";
 import NoteGenerator from "./NoteGenerator";
-import { Theme } from "../../styles/theme";
 
 export default function MusicClefs(props) {
   let targetMidiNum = props.targetMidiNum;
   let userSuccess = props.userSuccess;
-  const theme = Theme();
 
   const [note, setNote] = useState(NoteGenerator(targetMidiNum));
 
-  // use effect for when the target note changes
   useEffect(() => {
     setNote(NoteGenerator(targetMidiNum));
   }, [targetMidiNum, userSuccess]);
@@ -28,12 +25,12 @@ export default function MusicClefs(props) {
       <Grid item xs></Grid>
 
       <Grid
-        sx={{ background: theme.palette.background.default }}
+        sx={{ background: "theme.palette.background.default " }}
         item
         xs={6}
         alignItems="center"
         justifyContent="center"
-        paddingTop={"10px"}
+        paddingTop={"0px"}
       >
         <Notation
           notation={notation}
